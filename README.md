@@ -32,4 +32,4 @@ Con la nueva base, realizar un análisis análogo al que realizamos en el cursad
 
 6- Evaluación.
 
-7- Pregunta: ¿Se realizó alguna normalización de la base? ¿Por qué ?
+7- Pregunta: ¿Se realizó alguna normalización de la base? ¿Por qué?
