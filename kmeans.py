@@ -47,8 +47,6 @@ df = df[
     ]
 ]
 
-df.head()
-
 # %%
 df = df[df.overall > 85] # extracting players with overall above 86
 df = df.fillna(df.mean()) # initialize null values with avg
