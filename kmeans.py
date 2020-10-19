@@ -75,16 +75,13 @@ reduced = pd.DataFrame(pca.fit_transform(X_norm))
 from sklearn.cluster import KMeans
 
 # specify the number of clusters
-kmeans = KMeans(n_clusters=5)
+kmeans = KMeans(n_clusters=4)
 
 # fit the input data
 kmeans = kmeans.fit(reduced)
 
 # get the cluster labels
 labels = kmeans.predict(reduced)
-
-# centroid values
-centroid = kmeans.cluster_centers_
 
 # cluster values
 clusters = kmeans.labels_.tolist()

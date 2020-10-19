@@ -71,21 +71,17 @@ pca = PCA(n_components = 2) # 2D PCA for the plot
 reduced = pd.DataFrame(pca.fit_transform(X_norm))
 
 # %%
-from sklearn.cluster import MeanShift
+from sklearn.cluster import AgglomerativeClustering
 
-mean_shift = MeanShift(
-    bandwidth=0.55,
-    bin_seeding=True
-)
+# specify the number of clusters
+hierarchical = AgglomerativeClustering(
+    n_clusters=4, affinity='l1', linkage='average')
 
-# fit the input data
-mean_shift = mean_shift.fit(reduced)
-
-# get the cluster labels
-labels = mean_shift.predict(reduced)
+# fit and get the cluster labels
+labels = hierarchical.fit_predict(reduced)
 
 # cluster values
-clusters = mean_shift.labels_.tolist()
+clusters = hierarchical.labels_.tolist()
 
 # %%
 # Make a new data frame by adding players' names and their cluster
@@ -93,6 +89,7 @@ reduced['cluster'] = clusters
 reduced['name'] = names
 reduced.columns = ['x', 'y', 'cluster', 'name']
 reduced.head()
+
 
 # %%
 import matplotlib.pyplot as plt
