@@ -22,7 +22,7 @@ Con la nueva base, realizar un análisis análogo al que realizamos en el cursad
 
 1- Análisis exploratorio (sintético, no muy extenso).
 
-2- Evaluación visual  e intuitiva de a dos variables por vez.
+2- Evaluación visual e intuitiva de a dos variables por vez.
 
 3- Uso de técnicas de clustering: k-Medias, Mean Shift, agregar alguna jerárquica vista en el teórico (sugerencia: usar 'cityblock' como distancia en el jerárquico).
 

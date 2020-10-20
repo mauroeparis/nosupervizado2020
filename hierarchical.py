@@ -48,7 +48,7 @@ df = df[
 ]
 
 # %%
-df = df[df.overall > 85] # extracting players with overall above 86
+# df = df[df.overall > 85] # extracting players with overall above 86
 df = df.fillna(df.mean()) # initialize null values with avg
 
 # %%
@@ -75,7 +75,7 @@ from sklearn.cluster import AgglomerativeClustering
 
 # specify the number of clusters
 hierarchical = AgglomerativeClustering(
-    n_clusters=4, affinity='l1', linkage='average')
+    n_clusters=4, affinity='l1', linkage='complete')
 
 # fit and get the cluster labels
 labels = hierarchical.fit_predict(reduced)
@@ -92,22 +92,23 @@ reduced.head()
 
 
 # %%
-import matplotlib.pyplot as plt
-import seaborn as sns
-%matplotlib inline
+graf1 = go.Scatter(
+    x=reduced['x'],
+    y=reduced['y'],
+    mode='markers',
+    text=reduced["name"],
+    marker=dict(size=5, color=reduced['cluster'], colorscale='Rainbow',)
+)
 
-sns.set(style="white")
+layout = go.Layout(
+    title="Visualización de la base de a dos variables numéricas",
+    titlefont=dict(size=20),
+    xaxis=dict(title="PC 1"),
+    yaxis=dict(title="PC 2"),
+    autosize=False, width=1000, height=1000
+)
 
-ax = sns.lmplot(x="x", y="y", hue='cluster', data=reduced, legend=False,
-                   fit_reg=False, height=15, scatter_kws={"s": 250})
+data = [graf1]
 
-texts = []
-for x, y, s in zip(reduced.x, reduced.y, reduced.name):
-    texts.append(plt.text(x, y, s))
-
-ax.set(ylim=(-2, 2))
-plt.tick_params(labelsize=15)
-plt.xlabel("PC 1", fontsize = 20)
-plt.ylabel("PC 2", fontsize = 20)
-
-plt.show()
+fig = go.Figure(data=data, layout=layout)
+(fig)
